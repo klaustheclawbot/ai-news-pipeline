@@ -1,4 +1,5 @@
 const SOURCES = require('../ai-news-sources.json');
+const { fetchXSignals, noopAdapter } = require('./x');
 
 const DEFAULT_TIMEOUT = 10000;
 
@@ -68,10 +69,6 @@ function isJunkLine(line) {
     lower.includes('site:x.com/');
 }
 
-async function fetchXSignals() {
-  return [];
-}
-
 async function fetchRssSignals({ fetchImpl = fetch } = {}) {
   const results = [];
   for (const feed of SOURCES.rssFeeds || []) {
@@ -127,8 +124,9 @@ async function fetchWebSignals({ fetchImpl = fetch } = {}) {
 
 async function getAINews(options = {}) {
   const fetchImpl = options.fetchImpl || fetch;
+  const xAdapter = options.xAdapter || noopAdapter;
   const [xSignals, rssSignals, webSignals] = await Promise.all([
-    fetchXSignals(),
+    fetchXSignals({ accounts: SOURCES.xAccounts, adapter: xAdapter }),
     fetchRssSignals({ fetchImpl }),
     fetchWebSignals({ fetchImpl })
   ]);
@@ -158,6 +156,7 @@ module.exports = {
   scoreItem,
   isJunkLine,
   fetchXSignals,
+  noopAdapter,
   fetchRssSignals,
   fetchWebSignals,
   getAINews,

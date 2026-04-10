@@ -9,23 +9,50 @@ It gathers structured signals so a separate assistant layer can apply judgment a
 
 ## What it does
 
-- Maintains a curated watchlist of major AI lab accounts on X
-- Prefers first-party sources conceptually
+- Maintains a curated watchlist of major AI labs and notable people on X
+- Supports a **pluggable X adapter layer**
 - Falls back to official RSS/blog feeds when direct X extraction is unreliable
 - Returns structured, ranked items plus source-health metadata
 
-## What it should be used for
+## X watchlist
 
-- Daily AI news collection
-- Signal ranking
-- Source monitoring
-- Feeding a higher-level briefing agent
+Includes official labs and notable people such as:
+- OpenAI / Sam Altman / Greg Brockman
+- Anthropic / Dario Amodei
+- Google DeepMind / Demis Hassabis / Logan Kilpatrick
+- Meta AI / Yann LeCun
+- xAI / Elon Musk
+- Mistral / Arthur Mensch
+- Hugging Face / Clem Delangue
+- Andrej Karpathy
+- Theo Browne (`@theo`)
+- Nathan Lambert
+- Andrew Ng
 
-## What it should not do
+## Pluggable X layer
 
-- Write the final executive briefing text
-- Mix market, portfolio, crypto, and AI summarization into one script
-- Pretend low-quality/noisy retrieval is trustworthy
+Current default adapter is a noop adapter.
+That means the architecture is ready for a real X source, but the package does not pretend to have reliable X retrieval when it doesn't.
+
+You can inject an adapter through `getAINews({ xAdapter })`.
+
+Expected adapter contract:
+
+```js
+{
+  async fetchSignals(account) {
+    return [
+      {
+        title: 'OpenAI announces new API',
+        description: '...',
+        url: 'https://x.com/...',
+        published: 'today',
+        priority: 10
+      }
+    ];
+  }
+}
+```
 
 ## API
 
