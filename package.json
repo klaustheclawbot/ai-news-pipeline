@@ -1,0 +1,13 @@
+{
+  "name": "ai-news-pipeline",
+  "version": "0.1.0",
+  "private": false,
+  "description": "X-first AI news pipeline with official-source fallback",
+  "main": "ai-news.js",
+  "type": "commonjs",
+  "scripts": {
+    "news": "node ai-news.js",
+    "brief": "node market-briefing.js"
+  },
+  "license": "MIT"
+}

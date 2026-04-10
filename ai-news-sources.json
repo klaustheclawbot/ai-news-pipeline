@@ -1,0 +1,31 @@
+{
+  "xAccounts": [
+    { "lab": "OpenAI", "handle": "OpenAI", "priority": 10 },
+    { "lab": "Anthropic", "handle": "AnthropicAI", "priority": 10 },
+    { "lab": "Google DeepMind", "handle": "GoogleDeepMind", "priority": 10 },
+    { "lab": "Meta AI", "handle": "AIatMeta", "priority": 9 },
+    { "lab": "xAI", "handle": "xai", "priority": 9 },
+    { "lab": "Mistral AI", "handle": "MistralAI", "priority": 9 },
+    { "lab": "DeepSeek", "handle": "deepseek_ai", "priority": 9 },
+    { "lab": "Qwen", "handle": "Alibaba_Qwen", "priority": 8 },
+    { "lab": "Moonshot AI", "handle": "MoonshotAI_HK", "priority": 8 },
+    { "lab": "MiniMax", "handle": "MiniMax__AI", "priority": 8 },
+    { "lab": "Zhipu AI", "handle": "Zhipu_AI", "priority": 8 },
+    { "lab": "01.AI", "handle": "01AI_Yi", "priority": 7 },
+    { "lab": "Cohere", "handle": "cohere", "priority": 7 },
+    { "lab": "Perplexity", "handle": "perplexity_ai", "priority": 7 },
+    { "lab": "Hugging Face", "handle": "huggingface", "priority": 7 }
+  ],
+  "rssFeeds": [
+    { "lab": "OpenAI", "url": "https://openai.com/news/rss.xml", "priority": 10 },
+    { "lab": "Anthropic", "url": "https://www.anthropic.com/news/rss.xml", "priority": 10 },
+    { "lab": "Google DeepMind", "url": "https://deepmind.google/discover/blog/rss.xml", "priority": 10 },
+    { "lab": "Meta AI", "url": "https://ai.meta.com/blog/rss/", "priority": 9 },
+    { "lab": "Mistral AI", "url": "https://mistral.ai/news/rss.xml", "priority": 9 },
+    { "lab": "Hugging Face", "url": "https://huggingface.co/blog/feed.xml", "priority": 7 }
+  ],
+  "webQueries": [
+    "OpenAI OR Anthropic OR Google DeepMind OR Meta AI OR xAI OR Mistral AI OR DeepSeek OR Qwen OR Moonshot AI OR MiniMax OR Zhipu AI model release funding acquisition launch benchmark API",
+    "AI funding OpenAI Anthropic Google DeepMind Meta xAI Mistral DeepSeek Qwen Moonshot MiniMax Zhipu"
+  ]
+}
