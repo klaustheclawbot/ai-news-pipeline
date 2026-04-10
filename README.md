@@ -1,52 +1,58 @@
 # AI News Pipeline
 
-X-first AI news pipeline for daily market briefings.
+Data backbone for collecting and ranking AI-news signals.
+
+## Design goal
+
+This repo is **not** the final briefing writer.
+It gathers structured signals so a separate assistant layer can apply judgment and produce a short executive briefing.
 
 ## What it does
 
 - Maintains a curated watchlist of major AI lab accounts on X
-- Attempts to prioritize first-party signals
+- Prefers first-party sources conceptually
 - Falls back to official RSS/blog feeds when direct X extraction is unreliable
-- Produces structured AI-news items for a morning briefing
+- Returns structured, ranked items plus source-health metadata
 
-## Included files
+## What it should be used for
 
-- `ai-news.js` — main news aggregation logic
-- `ai-news-sources.json` — watchlist + feed configuration
-- `market-briefing.js` — example integration into a 7am market brief
+- Daily AI news collection
+- Signal ranking
+- Source monitoring
+- Feeding a higher-level briefing agent
 
-## Current architecture
+## What it should not do
 
-1. X watchlist configured for:
-   - OpenAI
-   - Anthropic
-   - Google DeepMind
-   - Meta AI
-   - xAI
-   - Mistral AI
-   - DeepSeek
-   - Qwen
-   - Moonshot AI
-   - MiniMax
-   - Zhipu AI
-   - and adjacent ecosystem accounts
-2. Official RSS/blog fallback
-3. Graceful degradation when X extraction is unavailable
+- Write the final executive briefing text
+- Mix market, portfolio, crypto, and AI summarization into one script
+- Pretend low-quality/noisy retrieval is trustworthy
+
+## API
+
+### `getAINews(options?)`
+Returns:
+- source metadata
+- counts by signal type
+- watchlist config
+- ranked `items`
+- note about source quality / degradation
+
+## CLI
+
+```bash
+npm run news
+```
+
+## Tests
+
+```bash
+npm test
+```
 
 ## Current limitation
 
-Direct X extraction is **not reliable in the current environment**, so the pipeline currently uses official feeds as the trustworthy fallback instead of returning noisy junk.
+Direct X extraction is not reliable in the current environment, so the pipeline currently uses official feeds as the trustworthy fallback instead of returning junk.
 
-## Run
+## Planned next step
 
-```bash
-node ai-news.js
-node market-briefing.js
-```
-
-## Next steps
-
-- Add robust X ingestion (API or reliable scraper)
-- Deduplicate X posts against blog/news coverage
-- Rank material updates over generic marketing posts
-- Group output by lab
+Add a robust X ingestion adapter so the assistant can reason over first-party posts before blog/news coverage.
